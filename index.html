@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tamagochi</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="labelContainer">
+      <div class="label">
+        <label id="labelFood" for="">Food 100%</label>
+        <meter class="meter1" value="100" min="0" max="100"></meter>
+      </div>
+      <div class="label">
+        <label id="labelWater" for="">Water 100%</label>
+        <meter class="meter1 meter2" value="100" min="0" max="100"></meter>
+      </div>
+      <div class="label">
+        <label id="labelPlay" for="">Play 100%</label>
+        <meter class="meter1 meter3" value="100" min="0" max="100"></meter>
+      </div>
+
+      <div class="label">
+        <label id="labelHygiene" for="">Hygiene 100%</label>
+        <meter class="meter1 meter4" value="100" min="0" max="100"></meter>
+      </div>
+    </div>
+
+    <div class="btnContainer">
+      <button class="btnServe" onclick="serve('food')">Food</button>
+      <button class="btnServe" onclick="serve('water')">Water</button>
+      <button class="btnServe" onclick="serve('play')">Play</button>
+      <button class="btnServe" onclick="serve('hygiene')">Hygiene</button>
+    </div>
+
+    <div class="overlay hidden">
+      <div class="reset">
+        <p>Game Over</p>
+        <button class="restart" onclick="startAgain()">Play again</button>
+      </div>
+    </div>
+
+    <script>
+      const food = document.querySelector(".meter1");
+      const water = document.querySelector(".meter2");
+      const play = document.querySelector(".meter3");
+      const hygiene = document.querySelector(".meter4");
+      const labelFood = document.querySelector("#labelFood");
+      const labelWater = document.querySelector("#labelWater");
+      const labelPlay = document.querySelector("#labelPlay");
+      const labelHygiene = document.querySelector("#labelHygiene");
+      const overlay = document.querySelector(".overlay");
+
+      let timerFood, timerWater, timerPlay, timerHygiene;
+
+      runApp();
+      function runApp() {
+        timerFood = setInterval(function () {
+          food.value -= randomNumber(5);
+          labelFood.textContent = `Food ${food.value}%`;
+          checkStatus();
+        }, 500);
+
+        timerWater = setInterval(function () {
+          water.value -= randomNumber(3);
+          labelWater.textContent = `Water ${water.value}%`;
+          checkStatus();
+        }, 1000);
+
+        timerPlay = setInterval(function () {
+          play.value -= randomNumber(5);
+          labelPlay.textContent = `Play ${play.value}%`;
+          checkStatus();
+        }, 1000);
+
+        timerHygiene = setInterval(function () {
+          hygiene.value -= randomNumber(3);
+          labelHygiene.textContent = `Hygiene ${hygiene.value}%`;
+          checkStatus();
+        }, 1000);
+      }
+
+      function checkStatus() {
+        if (
+          food.value <= 10 ||
+          water.value <= 10 ||
+          play.value <= 10 ||
+          hygiene <= 10
+        ) {
+          clearInterval(timerFood);
+          clearInterval(timerWater);
+          clearInterval(timerPlay);
+          clearInterval(timerHygiene);
+          overlay.classList.remove("hidden");
+        }
+      }
+
+      function serve(ele) {
+        if (ele === "food") {
+          console.log(ele);
+          food.value += 10;
+          labelFood.textContent =
+            labelFood.textContent + 10 > 100
+              ? `Food 100%`
+              : `Food ${food.value}%`;
+        } else if (ele === "water") {
+          console.log(ele);
+          water.value += 10;
+          labelWater.textContent =
+            labelWater.textContent + 10 > 100
+              ? `Water 100%`
+              : `Water ${water.value}%`;
+        } else if (ele === "play") {
+          console.log(ele);
+          play.value += 10;
+          labelPlay.textContent =
+            labelPlay.textContent + 10 > 100
+              ? `Play 100%`
+              : `Play ${play.value}%`;
+        } else {
+          console.log(ele);
+          hygiene.value += 10;
+          labelHygiene.textContent =
+            labelHygiene.textContent + 10 > 100
+              ? `Hygiene 100%`
+              : `Hygiene ${hygiene.value}%`;
+        }
+      }
+
+      function randomNumber(num) {
+        return Math.trunc(Math.random() * num) + 1;
+      }
+
+      function startAgain() {
+        overlay.classList.add("hidden");
+        food.value = 100;
+        labelFood.textContent = `Food ${food.value}%`;
+        water.value = 100;
+        labelWater.textContent = `Water ${water.value}%`;
+        play.value = 100;
+        labelPlay.textContent = `Play ${play.value}%`;
+        hygiene.value = 100;
+        labelHygiene.textContent = `Hygiene ${hygiene.value}%`;
+
+        runApp();
+      }
+    </script>
+  </body>
+</html>

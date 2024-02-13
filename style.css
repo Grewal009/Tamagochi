@@ -1,0 +1,82 @@
+.meter1 {
+  width: 150px;
+  height: 50px;
+  margin-top: -10px;
+}
+.meter1::-webkit-meter-optimum-value {
+  background: rgb(0, 164, 0);
+}
+
+.meter2::-webkit-meter-optimum-value {
+  background: rgb(231, 231, 7);
+}
+
+.meter3::-webkit-meter-optimum-value {
+  background: rgb(221, 67, 149);
+}
+
+.meter4::-webkit-meter-optimum-value {
+  background: rgba(45, 213, 211, 0.973);
+}
+
+.label {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.labelContainer {
+  display: flex;
+  justify-content: center;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(30, 29, 29);
+  opacity: 0.5;
+  z-index: 1;
+}
+.hidden {
+  display: none;
+}
+p {
+  color: white;
+  font-size: 20px;
+}
+.restart {
+  margin-top: -10px;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.btnServe {
+  width: 100px;
+  padding: 5px 5px;
+  border-radius: 10px;
+  border: solid 0px transparent;
+  cursor: pointer;
+  background-color: rgb(245, 222, 193);
+  color: brown;
+  font-weight: 600;
+}
+.btnServe:hover {
+  background-color: rgb(230, 182, 121);
+}
